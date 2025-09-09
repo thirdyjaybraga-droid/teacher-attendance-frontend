@@ -1,117 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title></title>
-	<meta name="generator" content="LibreOffice 25.8.1.1 (Linux)"/>
-	<meta name="created" content="2025-09-09T14:59:57.820398236"/>
-	<meta name="changed" content="2025-09-09T15:17:54.471948022"/>
-	<style type="text/css">
-		@page { size: 8.5in 11in; margin-left: 0.79in; margin-right: 0.39in; margin-top: 0.39in; margin-bottom: 0.39in }
-		p { background: transparent; margin-bottom: 0.1in; line-height: 115%; background: transparent }
-		a:link { color: #000080; text-decoration: underline }
-		a:visited { color: #800000; text-decoration: underline }
-	</style>
+  <meta charset="UTF-8">
+  <title>Attendance Confirmed</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    h1 { color: green; }
+  </style>
 </head>
-<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><p>&lt;!doctype
-html&gt;</p>
-<p>&lt;html&gt;</p>
-<p>&lt;head&gt;</p>
-<p>&lt;meta charset=&quot;utf-8&quot; /&gt;</p>
-<p>&lt;title&gt;Check-in Confirm&lt;/title&gt;</p>
-<p>&lt;meta name=&quot;viewport&quot;
-content=&quot;width=device-width,initial-scale=1&quot;&gt;</p>
-<p>&lt;style&gt;</p>
-<p>body { font-family: system-ui, Arial; display:flex;
-min-height:100vh; align-items:center; justify-content:center;
-background:#eef2f7; }</p>
-<p>.card { background:white; padding:28px; border-radius:12px;
-box-shadow:0 8px 30px rgba(15,25,40,0.08); text-align:center;
-width:360px; }</p>
-<p>h1 { margin:8px 0; font-size:20px; }</p>
-<p>p { color:#555; margin:8px 0 0; }</p>
-<p>.ok { color: #0a9b3b; font-weight:700; margin-top:12px; }</p>
-<p>&lt;/style&gt;</p>
-<p>&lt;/head&gt;</p>
-<p>&lt;body&gt;</p>
-<p>&lt;div class=&quot;card&quot;&gt;</p>
-<p>&lt;div id=&quot;status&quot;&gt;Checking...&lt;/div&gt;</p>
-<p>&lt;h1 id=&quot;teacher-name&quot;&gt;&lt;/h1&gt;</p>
-<p>&lt;p id=&quot;message&quot;&gt;&lt;/p&gt;</p>
-<p>&lt;div style=&quot;margin-top:12px;&quot;&gt;&lt;a
-id=&quot;to-dashboard&quot; href=&quot;#&quot;
-style=&quot;font-size:13px;&quot;&gt;View Dashboard&lt;/a&gt;&lt;/div&gt;</p>
-<p>&lt;/div&gt;</p>
-<p><br/>
-<br/>
-
-</p>
-<p>&lt;script&gt;</p>
-<p>const params = new URLSearchParams(location.search);</p>
-<p>const id = params.get(&quot;id&quot;);</p>
-<p><br/>
-<br/>
-
-</p>
-<p>// TODO: replace API variable with your backend URL (no trailing
-slash)</p>
-<p>const API =
-&quot;https://teacher-attendance-backend-vbzs.onrender.com&quot;; //
-e.g. https://teacher-attendance-backend.onrender.com</p>
-<p>const DASHBOARD =
-&quot;https://thirdyjaybraga-droid.github.io/teacher-attendance/dashboard.html&quot;;</p>
-<p><br/>
-<br/>
-
-</p>
-<p>document.getElementById(&quot;to-dashboard&quot;).href =
-DASHBOARD;</p>
-<p><br/>
-<br/>
-
-</p>
-<p>if (!id) {</p>
-<p>document.getElementById(&quot;status&quot;).textContent = &quot;No
-ID provided&quot;;</p>
-<p>document.getElementById(&quot;message&quot;).textContent = &quot;Scan
-a valid QR code.&quot;;</p>
-<p>} else {</p>
-<p>fetch(API + &quot;/api/teachers&quot;)</p>
-<p>.then(r =&gt; r.json())</p>
-<p>.then(list =&gt; {</p>
-<p>const t = list.find(x =&gt; x.id === id);</p>
-<p>if (t) {</p>
-<p>document.getElementById(&quot;status&quot;).textContent =
-&quot;Welcome&quot;;</p>
-<p>document.getElementById(&quot;teacher-name&quot;).textContent =
-t.name;</p>
-<p>document.getElementById(&quot;message&quot;).textContent = &quot;Your
-attendance has been recorded. Thanks!&quot;;</p>
-<p>document.querySelector(&quot;.card&quot;).classList.add(&quot;ok&quot;);</p>
-<p>} else {</p>
-<p>document.getElementById(&quot;status&quot;).textContent = &quot;Unknown
-ID&quot;;</p>
-<p>document.getElementById(&quot;message&quot;).textContent =
-&quot;Teacher not found.&quot;;</p>
-<p>}</p>
-<p>})</p>
-<p>.catch(err =&gt; {</p>
-<p>document.getElementById(&quot;status&quot;).textContent = &quot;Error&quot;;</p>
-<p>document.getElementById(&quot;message&quot;).textContent = &quot;Could
-not contact server.&quot;;</p>
-<p>console.error(err);</p>
-<p>});</p>
-<p><br/>
-<br/>
-
-</p>
-<p>// after 5s, optionally go to dashboard</p>
-<p>setTimeout(()=&gt; {</p>
-<p>window.location.href = DASHBOARD;</p>
-<p>}, 5000);</p>
-<p>}</p>
-<p>&lt;/script&gt;</p>
-<p>&lt;/body&gt;</p>
-<p>&lt;/html&gt;</p>
+<body>
+  <h1>Attendance Confirmed!</h1>
+  <p>Thank you for scanning your QR code.</p>
+  <a href="index.html">Go back</a>
 </body>
 </html>

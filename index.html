@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Teacher Attendance</title>
-  <script src="https://unpkg.com/html5-qrcode"></script>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; background: #f9fafb; }
-    h1 { color: #333; margin-top: 20px; }
-    #reader { width: 300px; margin: 20px auto; }
-    #result { margin-top: 20px; font-weight: bold; }
-  </style>
+<meta charset="UTF-8">
+<title>Teacher Attendance</title>
+<script src="https://unpkg.com/html5-qrcode"></script>
+<style>
+body { font-family: Arial, sans-serif; text-align: center; background: #f9fafb; }
+h1 { color: #333; margin-top: 20px; }
+#reader { width: 300px; margin: 20px auto; }
+#result { margin-top: 20px; font-weight: bold; }
+</style>
 </head>
 <body>
-  <h1>Teacher Attendance</h1>
-  <div id="reader"></div>
-  <div id="result">Scan a QR code...</div>
+<h1>Teacher Attendance</h1>
+<div id="reader"></div>
+<div id="result">Scan a QR code...</div>
 
-  <script>
-    function onScanSuccess(decodedText) {
-      document.getElementById("result").innerText = "Scanned: " + decodedText;
+<script>
+function onScanSuccess(decodedText) {
+    document.getElementById("result").innerText = "Scanned: " + decodedText;
 
-      // Replace this with your actual backend Render URL
-      fetch(`https://teacher-attendance-backend-vbzs.onrender.com/scan_qr/${decodedText}`)
-        .then(res => res.text())
-        .then(msg => {
-          document.getElementById("result").innerText = msg;
-          window.location.href = "confirm.html"; // redirect to confirm page
-        })
-        .catch(err => {
-          document.getElementById("result").innerText = "Error: " + err;
-        });
-    }
+    fetch(`https://teacher-attendance-backend-vbzs.onrender.com//scan_qr/${decodedText}`)
+    .then(res => res.text())
+    .then(msg => {
+        document.getElementById("result").innerText = msg;
+        window.location.href = "confirm.html";
+    })
+    .catch(err => {
+        document.getElementById("result").innerText = "Error: " + err;
+    });
+}
 
-    const html5QrCode = new Html5Qrcode("reader");
-    html5QrCode.start(
-      { facingMode: "environment" },
-      { fps: 10, qrbox: 250 },
-      onScanSuccess
-    );
-  </script>
+const html5QrCode = new Html5Qrcode("reader");
+html5QrCode.start(
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    onScanSuccess
+);
+</script>
 </body>
 </html>

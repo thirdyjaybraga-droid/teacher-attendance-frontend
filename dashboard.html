@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 25.8.1.1 (Linux)"/>
+	<meta name="created" content="2025-09-09T15:02:49.657682985"/>
+	<meta name="changed" content="2025-09-09T15:02:54.104968086"/>
+</head>
+<body lang="en-US" dir="ltr"><p>&lt;!doctype html&gt;</p>
+<p>&lt;html&gt;</p>
+<p>&lt;head&gt;</p>
+<p>  &lt;meta charset=&quot;utf-8&quot; /&gt;</p>
+<p>  &lt;title&gt;Attendance Dashboard&lt;/title&gt;</p>
+<p>  &lt;meta name=&quot;viewport&quot;
+content=&quot;width=device-width,initial-scale=1&quot;&gt;</p>
+<p>  &lt;style&gt;</p>
+<p>    body { font-family: system-ui, Arial; padding:28px;
+background:#f5f7fb; }</p>
+<p>    h1 { margin-bottom:12px }</p>
+<p>    table { width:100%; border-collapse:collapse;
+background:white; border-radius:8px; overflow:hidden; box-shadow:0
+8px 24px rgba(15,25,40,0.04); }</p>
+<p>    th, td { padding:12px 14px; text-align:left; border-bottom:1px
+solid #f0f2f6; }</p>
+<p>    th { background:#fafbff; }</p>
+<p>    .present { color:#0a9b3b; font-weight:700; }</p>
+<p>  &lt;/style&gt;</p>
+<p>&lt;/head&gt;</p>
+<p>&lt;body&gt;</p>
+<p>  &lt;h1&gt;Today's Attendance&lt;/h1&gt;</p>
+<p>  &lt;div style=&quot;margin-bottom:12px;&quot;&gt;</p>
+<p>    &lt;a href=&quot;#&quot; id=&quot;download&quot;&gt;Download
+CSV&lt;/a&gt;</p>
+<p>  &lt;/div&gt;</p>
+<p>  &lt;table id=&quot;tbl&quot;&gt;</p>
+<p>    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Time
+(UTC)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</p>
+<p>    &lt;tbody id=&quot;body&quot;&gt;&lt;/tbody&gt;</p>
+<p>  &lt;/table&gt;</p>
+<p><br/>
+<br/>
+
+</p>
+<p>&lt;script&gt;</p>
+<p>const API = &quot;https://&lt;YOUR_BACKEND_HOST&gt;&quot;; //
+replace</p>
+<p><br/>
+<br/>
+
+</p>
+<p>async function load(){</p>
+<p>  try {</p>
+<p>    const res = await fetch(API + &quot;/api/attendance&quot;);</p>
+<p>    const rows = await res.json();</p>
+<p>    const tbody = document.getElementById(&quot;body&quot;);</p>
+<p>    tbody.innerHTML = &quot;&quot;;</p>
+<p>    rows.forEach(r =&gt; {</p>
+<p>      const tr = document.createElement(&quot;tr&quot;);</p>
+<p>      tr.innerHTML = `&lt;td&gt;${r.id}&lt;/td&gt;&lt;td&gt;${r.name}&lt;/td&gt;&lt;td
+class=&quot;${r.status==='Present'?'present':''}&quot;&gt;${r.status}&lt;/td&gt;&lt;td&gt;${r.timestamp}&lt;/td&gt;`;</p>
+<p>      tbody.appendChild(tr);</p>
+<p>    });</p>
+<p>  } catch(err){</p>
+<p>    console.error(err);</p>
+<p>  }</p>
+<p>}</p>
+<p>document.getElementById(&quot;download&quot;).onclick = () =&gt; {</p>
+<p>  window.open(API + &quot;/download&quot;, &quot;_blank&quot;);</p>
+<p>}</p>
+<p>load();</p>
+<p>setInterval(load, 5000);</p>
+<p>&lt;/script&gt;</p>
+<p>&lt;/body&gt;</p>
+<p>&lt;/html&gt;</p>
+</body>
+</html>
